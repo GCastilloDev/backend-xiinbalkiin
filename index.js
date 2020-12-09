@@ -51,6 +51,7 @@ app.get("/api/v1/bus/", (req, res) => {
   console.log(req.query);
   const data = {
     query: req.query,
+    timeStamp: new Date()
   };
   db.collection("pruebas")
     .add(data)
