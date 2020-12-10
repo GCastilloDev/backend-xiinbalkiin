@@ -48,19 +48,33 @@ app.get("/api/v1/", (req, res) => {
 });
 
 app.get("/api/v1/bus/", (req, res) => {
-  console.log(req.query);
-  const data = {
-    query: req.query,
-    timeStamp: new Date()
-  };
-  db.collection("pruebas")
-    .add(data)
+  const id = req.query.idBus;
+  const latitud = req.query.latitud;
+  const longitud = req.query.longitud;
+
+  db.collection("camiones")
+    .doc(id)
+    .update({
+      latitud: latitud,
+      longitud: longitud,
+      updated: new Date(),
+    })
     .then(() => {
       console.log("REGISTRO EXITOSO");
     })
     .catch((err) => {
       console.log(err);
     });
+
+  // db.collection("pruebas")
+  //   .add(data)
+  //   .then(() => {
+  //     console.log("REGISTRO EXITOSO");
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   });
+
   res.json({
     status: "ok",
     query: req.query,
