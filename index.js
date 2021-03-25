@@ -63,7 +63,9 @@ app.get("/api/v1/bus/", (req, res) => {
       console.log("REGISTRO EXITOSO");
     })
     .catch((err) => {
+      console.log("********************** ERROR *******************************);
       console.log(err);
+      console.log("***********************************************************);
     });
 
   // db.collection("pruebas")
